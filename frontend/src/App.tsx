@@ -14,7 +14,7 @@ export default function App() {
         <GlobalStyles />
         <Routes>
           <Route path="/cadastro" element={<Register />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/" element={<Login />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/admin/clientes" element={<Clients />} />
           <Route path="/cliente" element={<Client />} />

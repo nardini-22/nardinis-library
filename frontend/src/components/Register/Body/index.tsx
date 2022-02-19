@@ -29,7 +29,7 @@ export default function Body() {
       })
       .then((res) => {
         if (res.status === 200) {
-          navigate("/login");
+          navigate("/");
         }
       })
       .catch((err) => {
@@ -75,7 +75,7 @@ export default function Body() {
           </InputContainer>
           <Button onClick={(el) => handleSubmit(el)}>Cadastrar</Button>
           <LinkLogin>
-            Já possuo uma conta<Link to={"/login"}>Clique aqui!</Link>
+            Já possuo uma conta<Link to={"/"}>Clique aqui!</Link>
           </LinkLogin>
         </Form>
       </FormContainer>

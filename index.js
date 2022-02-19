@@ -6,7 +6,7 @@ const path = require("path");
 
 const app = express();
 
-app.use(express.static(path.join(__dirname, 'frontend/build')))
+app.use(express.static(path.join(__dirname, "frontend/build")));
 
 const UsersRoutes = require("./routes/users");
 const BooksRoutes = require("./routes/books");
@@ -37,7 +37,6 @@ app.use(express.json());
 
 app.use("/", UsersRoutes, BooksRoutes);
 
-
 app.use((req, res, next) => {
   const erro = new Error("Rota não encontrada!");
   erro.status = 404;
@@ -53,9 +52,16 @@ app.use((error, req, res, next) => {
   });
 });
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname + '/frontend/build/index.html'))
-})
+let protected = ["transformed.js", "main.css", "favicon.ico"];
+
+app.get("*", (req, res) => {
+  let path = req.params["0"].substring(1);
+  if (protected.includes(path)) {
+    res.sendFile(path.join(__dirname + "/frontend/build/index.html"));
+  } else {
+    res.sendFile(`${__dirname}/build/index.html`);
+  }
+});
 
 const port = process.env.PORT || 3333;
 app.listen(port, () => {
