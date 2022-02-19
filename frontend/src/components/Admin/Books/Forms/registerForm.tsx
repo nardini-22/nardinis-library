@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { IBooksProps } from "../../../../@types/books";
 import { api } from "../../../../services/api";
+import Modal from "../../../Modal";
 import {
   Button,
   Form,
