@@ -1,5 +1,5 @@
 import Header from "./Header";
-import Body from "./Body";
+import Body from "./Books/Body";
 import Navbar from "./Navbar";
 
 export default function Admin() {

@@ -1,12 +1,14 @@
 import { createPortal } from "react-dom";
-import { ModalContainer, ModalOverlay } from "./styles";
+import { ModalContainer, ModalOverlay, ModalWrapper } from "./styles";
 
 export default function Modal({ children, open, closeModal }: any) {
   if (!open) return null;
   return createPortal(
     <>
       <ModalOverlay onClick={closeModal} />
-      <ModalContainer>{children}</ModalContainer>
+      <ModalWrapper>
+        <ModalContainer>{children}</ModalContainer>
+      </ModalWrapper>
     </>,
     document.getElementById("portal")!
   );

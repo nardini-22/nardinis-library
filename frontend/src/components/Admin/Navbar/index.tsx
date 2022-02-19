@@ -10,9 +10,6 @@ export default function Navbar() {
           <NavbarOptions onClick={() => navigate("/admin")}>
             Livros
           </NavbarOptions>
-          <NavbarOptions onClick={() => navigate("/admin/reservas")}>
-            Reservas
-          </NavbarOptions>
           <NavbarOptions onClick={() => navigate("/admin/clientes")}>
             Clientes
           </NavbarOptions>

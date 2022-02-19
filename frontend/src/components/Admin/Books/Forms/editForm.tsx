@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { IBooksProps } from "../../../@types/books";
-import { api } from "../../../services/api";
+import { IBooksProps } from "../../../../@types/books";
+import { api } from "../../../../services/api";
 import {
   Button,
   Form,
@@ -8,13 +8,15 @@ import {
   FormHeader,
   Input,
   InputContainer,
-} from "../../Register/Body/styles";
+  Select,
+} from "../../../Register/Body/styles";
 
 export default function EditForm({ id }: any) {
   const [books, setBooks] = useState<IBooksProps>({
     name: "",
     genre: "",
     author: "",
+    reserved: "",
   });
   useEffect(() => {
     const getData = () => {
@@ -30,10 +32,10 @@ export default function EditForm({ id }: any) {
       genre: books.genre,
       access_level: "admin",
       author: books.author,
-      reserved: false,
+      reserved: books.reserved,
     });
     el.preventDefault();
-    window.location.reload()
+    window.location.reload();
   };
   return (
     <>
@@ -72,6 +74,18 @@ export default function EditForm({ id }: any) {
                 setBooks((old) => ({ ...old, author: el.target.value }))
               }
             />
+          </InputContainer>
+          <InputContainer>
+            Reservado
+            <Select
+              value={books.reserved}
+              onChange={(el) =>
+                setBooks((old) => ({ ...old, reserved: el.target.value }))
+              }
+            >
+              <option>Sim</option>
+              <option>Não</option>
+            </Select>
           </InputContainer>
           <Button onClick={(el) => handleSubmit(el)}>Editar</Button>
         </Form>

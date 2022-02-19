@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { IBooksProps } from "../../../@types/books";
-import { api } from "../../../services/api";
+import { IBooksProps } from "../../../../@types/books";
+import { api } from "../../../../services/api";
 import {
   Button,
   Form,
@@ -8,7 +8,7 @@ import {
   FormHeader,
   Input,
   InputContainer,
-} from "../../Register/Body/styles";
+} from "../../../Register/Body/styles";
 export default function RegisterForm() {
   const [books, setBooks] = useState<IBooksProps>({
     name: "",
@@ -22,7 +22,7 @@ export default function RegisterForm() {
         genre: books.genre,
         access_level: "admin",
         author: books.author,
-        reserved: false,
+        reserved: "Não",
       })
       .then((res) => {
         window.alert("Sucesso! Livro cadastrado!");
@@ -31,6 +31,7 @@ export default function RegisterForm() {
       .catch((err) => {
         console.log(err.response.data);
       });
+    window.location.reload();
     el.preventDefault();
   };
   return (

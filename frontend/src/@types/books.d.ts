@@ -2,6 +2,6 @@ export interface IBooksProps {
   name?: string;
   genre?: string;
   author?: string;
-  reserved?: boolean;
+  reserved?: string;
   _id?: string;
 }

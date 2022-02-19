@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { IBooksProps } from "../../../@types/books";
-import { api } from "../../../services/api";
-import Modal from "../../Modal";
+import { IBooksProps } from "../../../../@types/books";
+import { api } from "../../../../services/api";
+import Modal from "../../../Modal";
 import EditForm from "../Forms/editForm";
 import RegisterForm from "../Forms/registerForm";
 import {
@@ -19,7 +19,7 @@ export default function Body() {
       name: "",
       author: "",
       genre: "",
-      reserved: false,
+      reserved: "",
       _id: "",
     },
   ]);
@@ -38,6 +38,7 @@ export default function Body() {
     api.delete(`/livros/${id}`).then((res) => {
       console.log(res.data);
     });
+    window.location.reload();
   };
   const handleEdit = (id: any) => {
     setIsOpen(true);
@@ -50,11 +51,11 @@ export default function Body() {
       </BooksPageTitle>
       <TableContainer>
         <TableWrapper>
-        <TableButtonContainer>
-          <TableButton onClick={() => setIsOpenRegister(true)}>
-            Novo livro
-          </TableButton>
-        </TableButtonContainer>
+          <TableButtonContainer>
+            <TableButton onClick={() => setIsOpenRegister(true)}>
+              Novo livro
+            </TableButton>
+          </TableButtonContainer>
           <Table>
             <thead>
               <tr>
@@ -72,7 +73,7 @@ export default function Body() {
                   <td>{books.name}</td>
                   <td>{books.author}</td>
                   <td>{books.genre}</td>
-                  <td>{books.reserved ? "Sim" : "Não"}</td>
+                  <td>{books.reserved}</td>
                   <td>
                     <TableButton onClick={() => handleEdit(books._id)}>
                       Editar

@@ -33,6 +33,14 @@ export const Input = styled.input`
   outline: none;
 `;
 
+export const Select = styled.select`
+margin: 5px 0 5px 0;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid ${(props) => props.theme.main.primary};
+  outline: none;
+`
+
 export const InputContainer = styled.div`
   display: flex;
   flex-direction: column;

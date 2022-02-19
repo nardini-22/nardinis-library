@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Button } from "../../Register/Body/styles";
+import { Button } from "../../../Register/Body/styles";
 
 export const Table = styled.table`
   border-collapse: collapse;
@@ -21,13 +21,19 @@ export const Table = styled.table`
 
 export const BodyFormContainer = styled.div`
   width: 100vw;
-  height: 50vh;
+  height: 70vh;
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 
-export const TableContainer = styled(BodyFormContainer)``;
+export const TableContainer = styled(BodyFormContainer)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 50vh;
+`;
 
 export const TableWrapper = styled.div`
   @media screen and (max-width: 767px) {
