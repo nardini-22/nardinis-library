@@ -29,9 +29,9 @@ export default function Body() {
             "Erro ao efetuar o login! Usuário ou senha estão errados ou não existem!"
           );
         } else {
-          if (res.data.access_level === "admin") {
+          if (res.data.access_level === "Admin") {
             navigate("/admin");
-          } else if (res.data.access_level === "client") {
+          } else if (res.data.access_level === "Cliente") {
             navigate("/cliente");
           }
         }

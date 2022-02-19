@@ -25,7 +25,7 @@ export default function Body() {
         username: data.username,
         email: data.email,
         password: data.password,
-        access_level: "client",
+        access_level: "Cliente",
       })
       .then((res) => {
         if (res.status === 200) {
