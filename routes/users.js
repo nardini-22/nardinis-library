@@ -12,10 +12,10 @@ router.get("/usuarios", (req, res, next) => {
     .catch(next);
 });
 
-router.get("/login/:password", (req, res, next) => {
+router.get("/login/:password/:username", (req, res, next) => {
   var bytes = CryptoJS.AES.decrypt(req.params.password, "hash password");
   var originalText = bytes.toString(CryptoJS.enc.Utf8);
-  Users.findOne({ password: req.params.password })
+  Users.findOne({ password: req.params.password, username: req.params.username})
     .then((users) => {
       res.send(users);
     })

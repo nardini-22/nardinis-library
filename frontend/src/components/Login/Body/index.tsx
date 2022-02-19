@@ -10,38 +10,43 @@ import {
   Input,
   InputContainer,
   LinkLogin,
-} from "./styles";
+} from "../../Register/Body/styles";
 
 export default function Body() {
   const [data, setData] = useState<IFormDataProps>({
     username: "",
-    email: "",
     password: "",
   });
   let navigate = useNavigate();
   const handleSubmit = (el: any) => {
     api
-      .post("/usuarios", {
-        username: data.username,
-        email: data.email,
-        password: data.password,
-        access_level: "client",
-      })
+      .get(`/login/${data.password}/${data.username}`)
       .then((res) => {
-        if (res.status === 200) {
-          navigate("/login", { replace: true });
+        if (res.status === 401) {
+        }
+        if (res.data.length === 0) {
+          window.alert(
+            "Erro ao efetuar o login! Usuário ou senha estão errados ou não existem!"
+          );
+        } else {
+          if (res.data.access_level === "admin") {
+            navigate("/admin", { replace: true });
+          } else if (res.data.access_level === "client") {
+            navigate("/cliente", { replace: true });
+          }
         }
       })
       .catch((err) => {
-        console.log(err.response.data);
+        if (err.response.status === 404) {
+          window.alert("Erro ao efetuar o login! Preencha os campos!");
+        }
       });
     el.preventDefault();
-    console.log(data);
   };
   return (
     <>
       <FormContainer>
-        <FormHeader>Cadastro</FormHeader>
+        <FormHeader>Login</FormHeader>
         <Form>
           <InputContainer>
             Nome
@@ -50,16 +55,6 @@ export default function Body() {
               placeholder="NOME"
               onChange={(el) =>
                 setData((old) => ({ ...old, username: el.target.value }))
-              }
-            />
-          </InputContainer>
-          <InputContainer>
-            Email
-            <Input
-              type="text"
-              placeholder="EMAIL"
-              onChange={(el) =>
-                setData((old) => ({ ...old, email: el.target.value }))
               }
             />
           </InputContainer>
@@ -73,9 +68,9 @@ export default function Body() {
               }
             />
           </InputContainer>
-          <Button onClick={(el) => handleSubmit(el)}>Cadastrar</Button>
+          <Button onClick={(el) => handleSubmit(el)}>Entrar</Button>
           <LinkLogin>
-            Já possuo uma conta<Link to={"/login"}>Clique aqui!</Link>
+            Ainda não possuo uma conta<Link to={"/cadastro"}>Clique aqui!</Link>
           </LinkLogin>
         </Form>
       </FormContainer>

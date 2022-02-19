@@ -4,12 +4,14 @@ export const Form = styled.form`
   background: ${(props) => props.theme.main.primaryText};
   display: flex;
   flex-direction: column;
-  padding: 10px;
+  padding: 40px 10px 10px 10px;
   border-radius: 5px;
+  box-shadow: 0px 0px 5px 0px #000000;
 `;
 
 export const FormContainer = styled.div`
   display: block;
+  position: relative;
 `;
 
 export const FormHeader = styled.header`
@@ -19,6 +21,8 @@ export const FormHeader = styled.header`
   font-weight: bold;
   text-align: center;
   border-radius: 5px 5px 0 0;
+  position: absolute;
+  width: 100%;
 `;
 
 export const Input = styled.input`
@@ -50,5 +54,11 @@ export const Button = styled.button`
   }
   &:active {
     background: ${(props) => props.theme.main.primaryDark};
+  }
+`;
+export const LinkLogin = styled.div`
+  display: flex;
+  & a {
+    margin: 0 0 0 5px;
   }
 `;
