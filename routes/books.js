@@ -10,6 +10,13 @@ router.get("/livros", (req, res, next) => {
     })
     .catch(next);
 });
+router.get("/livros/:_id", (req, res, next) => {
+  Books.findOne({ _id: req.params._id })
+    .then((books) => {
+      res.send(books);
+    })
+    .catch(next);
+});
 
 router.post("/livros", (req, res, next) => {
   Books.create(req.body)

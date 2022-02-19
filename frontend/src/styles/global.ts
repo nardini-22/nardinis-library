@@ -26,5 +26,6 @@ export const GlobalStyles = createGlobalStyle`
 
 body{
     background: #f1f1f1;
+    overflow: hidden;
 }
 `;

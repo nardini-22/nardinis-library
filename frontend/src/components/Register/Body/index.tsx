@@ -29,7 +29,7 @@ export default function Body() {
       })
       .then((res) => {
         if (res.status === 200) {
-          navigate("/login", { replace: true });
+          navigate("/login");
         }
       })
       .catch((err) => {

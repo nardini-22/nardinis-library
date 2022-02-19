@@ -30,9 +30,9 @@ export default function Body() {
           );
         } else {
           if (res.data.access_level === "admin") {
-            navigate("/admin", { replace: true });
+            navigate("/admin");
           } else if (res.data.access_level === "client") {
-            navigate("/cliente", { replace: true });
+            navigate("/cliente");
           }
         }
       })
