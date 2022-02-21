@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { IBooksProps } from "../../../@types/books";
 import { api } from "../../../services/api";
 import {
@@ -18,6 +19,7 @@ export default function Body() {
       reserved: "",
     },
   ]);
+  let navigate = useNavigate();
   useEffect(() => {
     const getData = () => {
       api.get("/livros").then((res) => {
@@ -27,33 +29,35 @@ export default function Body() {
     getData();
   }, []);
   const handleReserve = (id: any, reserved: any) => {
-    if (reserved === true) {
+    if (reserved === "Sim") {
       window.alert("Esse livro já foi reservado!");
     } else {
       api
         .put(`/livros/${id}`, {
-          reserved: true,
+          reserved: "Sim",
         })
         .then((res) => {
-          console.log(res.data);
           window.alert("Livro reservado com sucesso!");
+          navigate("/");
+          navigate("/cliente");
         });
     }
   };
   const handleReturn = (id: any, reserved: any) => {
-    if (reserved === "false") {
-      window.alert("Esse livro já foi retornado!");}
-    // } else {
-    //   console.log(reserved);
-    //   api
-    //     .put(`/livros/${id}`, {
-    //       reserved: false,
-    //     })
-    //     .then((res) => {
-    //       console.log(res.data);
-    //       window.alert("Livro retornado com sucesso!");
-    //     });
-    // }
+    if (reserved === "Não") {
+      window.alert("Esse livro já foi retornado!");
+    } else {
+      console.log(reserved);
+      api
+        .put(`/livros/${id}`, {
+          reserved: "Não",
+        })
+        .then((res) => {
+          window.alert("Livro retornado com sucesso!");
+          navigate("/");
+          navigate("/cliente");
+        });
+    }
   };
   return (
     <>
@@ -84,7 +88,9 @@ export default function Body() {
                     >
                       Reservar
                     </ClientTableButton>
-                    <ClientTableButton onClick={() => handleReturn(user._id, user.reserved)}>
+                    <ClientTableButton
+                      onClick={() => handleReturn(user._id, user.reserved)}
+                    >
                       Devolver
                     </ClientTableButton>
                   </td>

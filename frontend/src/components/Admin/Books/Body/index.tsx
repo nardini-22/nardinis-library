@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { IBooksProps } from "../../../../@types/books";
 import { api } from "../../../../services/api";
 import Modal from "../../../Modal";
@@ -23,6 +24,7 @@ export default function Body() {
       _id: "",
     },
   ]);
+  let navigate = useNavigate();
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isOpenRegister, setIsOpenRegister] = useState<boolean>(false);
   const [id, setId] = useState<string>("");
@@ -36,7 +38,8 @@ export default function Body() {
   }, []);
   const handleDelete = (id: any) => {
     api.delete(`/livros/${id}`).then((res) => {
-      window.location.reload();
+      navigate("/")
+      navigate("/admin")
     });
   };
   const handleEdit = (id: any) => {

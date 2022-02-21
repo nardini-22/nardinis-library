@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { IBooksProps } from "../../../../@types/books";
 import { api } from "../../../../services/api";
 import {
@@ -26,6 +27,7 @@ export default function EditForm({ id }: any) {
     };
     getData();
   }, []);
+  let navigate = useNavigate();
   const handleSubmit = (el: any) => {
     api
       .put(`/livros/${id}`, {
@@ -36,7 +38,8 @@ export default function EditForm({ id }: any) {
         reserved: books.reserved,
       })
       .then((res) => {
-        window.location.reload();
+        navigate("/");
+        navigate("/admin");;
       });
     el.preventDefault();
   };
@@ -86,8 +89,8 @@ export default function EditForm({ id }: any) {
                 setBooks((old) => ({ ...old, reserved: el.target.value }))
               }
             >
-              <option>Sim</option>
-              <option>Não</option>
+              <option value="Sim">Sim</option>
+              <option value="Não">Não</option>
             </Select>
           </InputContainer>
           <Button onClick={(el) => handleSubmit(el)}>Editar</Button>

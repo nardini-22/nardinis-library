@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-const CryptoJS = require("crypto-js");
 
 const Users = require("../models/user");
 
@@ -21,8 +20,6 @@ router.get("/usuarios/:_id", (req, res, next) => {
 });
 
 router.get("/login/:password/:username", (req, res, next) => {
-  var bytes = CryptoJS.AES.decrypt(req.params.password, "hash password");
-  var originalText = bytes.toString(CryptoJS.enc.Utf8);
   Users.findOne({
     password: req.params.password,
     username: req.params.username,

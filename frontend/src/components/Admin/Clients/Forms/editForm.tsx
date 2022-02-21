@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { IFormDataProps } from "../../../../@types/form";
 import { api } from "../../../../services/api";
 import {
@@ -26,6 +27,7 @@ export default function EditForm({ id }: any) {
     };
     getData();
   }, []);
+  let navigate = useNavigate();
   const handleSubmit = (el: any) => {
     api
       .put(`/usuarios/${id}`, {
@@ -35,7 +37,8 @@ export default function EditForm({ id }: any) {
         access_level: user.access_level,
       })
       .then((res) => {
-        window.location.reload();
+        navigate("/");
+        navigate("/admin/clientes");
       });
     el.preventDefault();
   };
