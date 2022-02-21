@@ -27,15 +27,18 @@ export default function EditForm({ id }: any) {
     getData();
   }, []);
   const handleSubmit = (el: any) => {
-    api.put(`/livros/${id}`, {
-      name: books.name,
-      genre: books.genre,
-      access_level: "admin",
-      author: books.author,
-      reserved: books.reserved,
-    });
+    api
+      .put(`/livros/${id}`, {
+        name: books.name,
+        genre: books.genre,
+        access_level: "admin",
+        author: books.author,
+        reserved: books.reserved,
+      })
+      .then((res) => {
+        window.location.reload();
+      });
     el.preventDefault();
-    window.location.reload();
   };
   return (
     <>

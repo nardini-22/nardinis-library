@@ -1,5 +1,5 @@
-import { HeaderContainer, Img } from "./styles";
 import Logo from "../../../assets/logo.svg";
+import { HeaderContainer, Img } from "./styles";
 
 export default function Header() {
   return (

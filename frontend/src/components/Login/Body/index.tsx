@@ -30,8 +30,10 @@ export default function Body() {
           );
         } else {
           if (res.data.access_level === "Admin") {
+            localStorage.setItem("isAuthenticated", "admin");
             navigate("/admin");
           } else if (res.data.access_level === "Cliente") {
+            localStorage.setItem("isAuthenticated", "cliente");
             navigate("/cliente");
           }
         }

@@ -3,6 +3,10 @@ import { NavbarContainer, NavbarList, NavbarOptions } from "./styles";
 
 export default function Navbar() {
   let navigate = useNavigate();
+  const handleLogout = () => {
+    localStorage.clear();
+    navigate("/");
+  };
   return (
     <>
       <NavbarContainer>
@@ -13,6 +17,7 @@ export default function Navbar() {
           <NavbarOptions onClick={() => navigate("/admin/clientes")}>
             Clientes
           </NavbarOptions>
+          <NavbarOptions onClick={() => handleLogout()}>Sair</NavbarOptions>
         </NavbarList>
       </NavbarContainer>
     </>

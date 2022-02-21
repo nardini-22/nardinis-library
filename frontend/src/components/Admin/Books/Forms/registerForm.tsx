@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { IBooksProps } from "../../../../@types/books";
 import { api } from "../../../../services/api";
-import Modal from "../../../Modal";
 import {
   Button,
   Form,
@@ -27,12 +26,11 @@ export default function RegisterForm() {
       })
       .then((res) => {
         window.alert("Sucesso! Livro cadastrado!");
-        console.log(res.data);
+        window.location.reload();
       })
       .catch((err) => {
         console.log(err.response.data);
       });
-    window.location.reload();
     el.preventDefault();
   };
   return (

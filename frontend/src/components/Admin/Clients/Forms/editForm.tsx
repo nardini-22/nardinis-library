@@ -27,14 +27,17 @@ export default function EditForm({ id }: any) {
     getData();
   }, []);
   const handleSubmit = (el: any) => {
-    api.put(`/usuarios/${id}`, {
-      username: user.username,
-      email: user.email,
-      password: user.password,
-      access_level: user.access_level,
-    });
+    api
+      .put(`/usuarios/${id}`, {
+        username: user.username,
+        email: user.email,
+        password: user.password,
+        access_level: user.access_level,
+      })
+      .then((res) => {
+        window.location.reload();
+      });
     el.preventDefault();
-    window.location.reload();
   };
   return (
     <>

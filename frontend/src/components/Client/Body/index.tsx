@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
 import { IBooksProps } from "../../../@types/books";
-import { IFormDataProps } from "../../../@types/form";
 import { api } from "../../../services/api";
 import {
   BooksPageTitle,
   Table,
-  TableButton,
   TableContainer,
   TableWrapper,
 } from "../../Admin/Books/Body/styles";
@@ -20,7 +18,6 @@ export default function Body() {
       reserved: "",
     },
   ]);
-  const [reserve, setReserve] = useState<boolean>(false);
   useEffect(() => {
     const getData = () => {
       api.get("/livros").then((res) => {
@@ -29,14 +26,13 @@ export default function Body() {
     };
     getData();
   }, []);
-  const handleReserve = (id: any) => {
-    if (reserve === true) {
+  const handleReserve = (id: any, reserved: any) => {
+    if (reserved === true) {
       window.alert("Esse livro já foi reservado!");
     } else {
-      setReserve(true);
       api
         .put(`/livros/${id}`, {
-          reserved: reserve,
+          reserved: true,
         })
         .then((res) => {
           console.log(res.data);
@@ -44,20 +40,20 @@ export default function Body() {
         });
     }
   };
-  const handleReturn = (id: any) => {
-    if (reserve === false) {
-      window.alert("Esse livro já foi retornado!");
-    } else {
-      setReserve(false);
-      api
-        .put(`/livros/${id}`, {
-          reserved: reserve,
-        })
-        .then((res) => {
-          console.log(res.data);
-          window.alert("Livro retornado com sucesso!");
-        });
-    }
+  const handleReturn = (id: any, reserved: any) => {
+    if (reserved === "false") {
+      window.alert("Esse livro já foi retornado!");}
+    // } else {
+    //   console.log(reserved);
+    //   api
+    //     .put(`/livros/${id}`, {
+    //       reserved: false,
+    //     })
+    //     .then((res) => {
+    //       console.log(res.data);
+    //       window.alert("Livro retornado com sucesso!");
+    //     });
+    // }
   };
   return (
     <>
@@ -73,6 +69,7 @@ export default function Body() {
                 <th>Autor(a)</th>
                 <th>Gênero</th>
                 <th>Reserva</th>
+                <th>Reservado</th>
               </tr>
             </thead>
             <tbody>
@@ -82,13 +79,16 @@ export default function Body() {
                   <td>{user.name}</td>
                   <td>{user.author}</td>
                   <td>
-                    <ClientTableButton onClick={() => handleReserve(user._id)}>
+                    <ClientTableButton
+                      onClick={() => handleReserve(user._id, user.reserved)}
+                    >
                       Reservar
                     </ClientTableButton>
-                    <ClientTableButton onClick={() => handleReturn(user._id)}>
+                    <ClientTableButton onClick={() => handleReturn(user._id, user.reserved)}>
                       Devolver
                     </ClientTableButton>
                   </td>
+                  <td>{user.reserved}</td>
                 </tr>
               ))}
             </tbody>

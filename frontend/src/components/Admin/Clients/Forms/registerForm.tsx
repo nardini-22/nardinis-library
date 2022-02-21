@@ -28,11 +28,11 @@ export default function RegisterForm() {
       })
       .then((res) => {
         console.log(res.data);
+        window.location.reload();
       })
       .catch((err) => {
         console.log(err.response.data);
       });
-    window.location.reload();
     el.preventDefault();
   };
   return (

@@ -6,6 +6,7 @@ import { GlobalStyles, theme } from "./styles/global";
 import Client from "./components/Client/client";
 import Admin from "./components/Admin/admin";
 import Clients from "./components/Admin/Clients/clients";
+import ProtectedRoutes from "./routes/ProtectedRoutes";
 
 export default function App() {
   return (
@@ -15,9 +16,11 @@ export default function App() {
         <Routes>
           <Route path="/cadastro" element={<Register />} />
           <Route path="/" element={<Login />} />
-          <Route path="/admin" element={<Admin />} />
-          <Route path="/admin/clientes" element={<Clients />} />
-          <Route path="/cliente" element={<Client />} />
+          <Route element={<ProtectedRoutes />}>
+            <Route path="/admin" element={<Admin />} />
+            <Route path="/admin/clientes" element={<Clients />} />
+            <Route path="/cliente" element={<Client />} />
+          </Route>
         </Routes>
       </ThemeProvider>
     </>
