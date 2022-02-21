@@ -17,8 +17,8 @@ const BooksSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  reserve: {
-    type: Boolean,
+  reserved: {
+    type: String,
     required: true,
   },
 });
