@@ -86,8 +86,8 @@ export default function EditForm({ id }: any) {
                 setBooks((old) => ({ ...old, reserved: el.target.value }))
               }
             >
-              <option>Sim</option>
-              <option>Não</option>
+              <option value="Sim">Sim</option>
+              <option value="Não">Não</option>
             </Select>
           </InputContainer>
           <Button onClick={(el) => handleSubmit(el)}>Editar</Button>
