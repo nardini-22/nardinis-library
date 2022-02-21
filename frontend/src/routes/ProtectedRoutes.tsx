@@ -3,12 +3,8 @@ import { Navigate, Outlet } from "react-router-dom";
 export const useAuth = () => {
   let user = false;
   const token = localStorage.getItem("isAuthenticated");
-  console.log(token);
   if (token) {
     user = true;
-    if (token === "admin") {
-    } else if (token === "cliente") {
-    }
   } else {
     user = false;
   }
