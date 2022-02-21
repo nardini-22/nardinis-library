@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { IFormDataProps } from "../../../../@types/form";
 import { api } from "../../../../services/api";
 import Modal from "../../../Modal";
@@ -37,10 +38,12 @@ export default function Body() {
     setIsOpen(true);
     setId(id);
   };
+  let navigate = useNavigate();
   const handleDelete = (id: any) => {
     api.delete(`/usuarios/${id}`).then((res) => {
       console.log(res.data);
-      window.location.reload();
+      navigate("/");
+      navigate("/admin/cliente");
     });
   };
   return (

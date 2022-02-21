@@ -38,7 +38,8 @@ export default function Body() {
         })
         .then((res) => {
           window.alert("Livro reservado com sucesso!");
-          window.location.reload();
+          navigate("/");
+          navigate("/cliente");
         });
     }
   };
@@ -53,7 +54,8 @@ export default function Body() {
         })
         .then((res) => {
           window.alert("Livro retornado com sucesso!");
-          window.location.reload();
+          navigate("/");
+          navigate("/cliente");
         });
     }
   };

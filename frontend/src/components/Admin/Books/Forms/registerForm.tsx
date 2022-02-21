@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { IBooksProps } from "../../../../@types/books";
 import { api } from "../../../../services/api";
 import {
@@ -15,6 +16,7 @@ export default function RegisterForm() {
     genre: "",
     author: "",
   });
+  let navigate = useNavigate();
   const handleSubmit = (el: any) => {
     api
       .post("/livros", {
@@ -26,7 +28,8 @@ export default function RegisterForm() {
       })
       .then((res) => {
         window.alert("Sucesso! Livro cadastrado!");
-        window.location.reload();
+        navigate("/");
+        navigate("/admin");
       })
       .catch((err) => {
         console.log(err.response.data);

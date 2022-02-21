@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { IFormDataProps } from "../../../../@types/form";
 import { api } from "../../../../services/api";
 import {
@@ -18,6 +19,7 @@ export default function RegisterForm() {
     password: "",
     access_level: "",
   });
+  let navigate = useNavigate();
   const handleSubmit = (el: any) => {
     api
       .post("/usuarios", {
@@ -28,7 +30,8 @@ export default function RegisterForm() {
       })
       .then((res) => {
         console.log(res.data);
-        window.location.reload();
+        navigate("/");
+        navigate("/admin/cliente");
       })
       .catch((err) => {
         console.log(err.response.data);
