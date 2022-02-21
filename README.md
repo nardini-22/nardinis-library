@@ -1,4 +1,4 @@
-# Nardini's library
+# Nardini's Library
 
 ## Demo
 
